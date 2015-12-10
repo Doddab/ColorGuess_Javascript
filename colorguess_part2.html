@@ -1,0 +1,71 @@
+<html>
+<head>
+<title> JS number guessing game </title>
+</head>
+<body onload="do_game()">
+<script>
+
+//alert("Hello");
+//var arr=new Array("Harsh", "Kumar", "Ramadev");
+//alert(arr[1]);
+
+var target;
+var ip_t;
+var finished=false;
+var guess=0;
+var colors=["Aqua","Azure","Black","Blue","Cyan","Gold","Ivory","Olive","Violet"];
+
+function do_game(){
+var rn=Math.random()*colors.length-1;
+//var rn=Math.random()*100;
+var rni=Math.floor(rn);
+//document.write(rni);
+target=colors[rni];
+//alert(target);
+//document.write(target);
+//target=rni+1;
+//document.write(rn);
+
+while(!finished)
+{
+ip_t=prompt("I am thinking of one of these colors:\n\n"+
+	    "Aqua,Azure,Blue,Black,Cyan,Gold,Ivory,Olive,Violet\n\n"+
+	    "What color am I thinking of?");
+//ip_t=window.prompt(“I am thinking of a number”);
+//ip=parseInt(ip_t);
+//document.write(ip_t);
+guess+=1;
+finished=check_guess();
+}
+}
+
+function check_guess(){
+/*if(isNaN(ip)){
+alert("NaN Please enter correct number");
+return false;
+}*/
+if((colors.indexOf(ip_t) < 0)){
+alert("Sorry, I dont recognize your color.\n\n"+"Please try again.");
+return false;
+}
+if(ip_t>target){
+alert("Sorry, your guess is not correct!\n\n"+
+"Hint: your color is alphabetically higher than mine.\n\n"+
+"Please try again.");
+return false;
+}
+if(ip_t<target){
+alert("Sorry, your guess is not correct!\n\n"+
+"Hint: your color is alphabetically lower than mine.\n\n"+
+"Please try again.");
+return false;
+}
+myBody=document.getElementsByTagName("body")[0];
+myBody.style.background=target;
+alert("Congratulations! You have guessed the color!\n\n"+"It took you "+ guess +" guesses to finish the game!\n\n"
++"You can see the color in the background");
+return true;
+}
+</script>
+</body>
+</html>
